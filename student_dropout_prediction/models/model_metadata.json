@@ -1,0 +1,212 @@
+{
+  "project": "AI-Based Student Dropout Prediction and Early Warning System",
+  "stage": "Stage 5 - Machine Learning Model Training",
+  "champion_model": "Random Forest",
+  "early_warning_feature_count": 30,
+  "early_warning_features": [
+    "Marital status",
+    "Application mode",
+    "Application order",
+    "Course",
+    "Daytime/evening attendance",
+    "Previous qualification",
+    "Previous qualification (grade)",
+    "Nacionality",
+    "Mother's qualification",
+    "Father's qualification",
+    "Mother's occupation",
+    "Father's occupation",
+    "Admission grade",
+    "Displaced",
+    "Educational special needs",
+    "Debtor",
+    "Tuition fees up to date",
+    "Gender",
+    "Scholarship holder",
+    "Age at enrollment",
+    "International",
+    "Curricular units 1st sem (credited)",
+    "Curricular units 1st sem (enrolled)",
+    "Curricular units 1st sem (evaluations)",
+    "Curricular units 1st sem (approved)",
+    "Curricular units 1st sem (grade)",
+    "Curricular units 1st sem (without evaluations)",
+    "Unemployment rate",
+    "Inflation rate",
+    "GDP"
+  ],
+  "test_metrics": {
+    "accuracy": 0.8441,
+    "recall": 0.7711,
+    "precision": 0.75,
+    "f1_score": 0.7604,
+    "roc_auc": 0.9066,
+    "confusion_matrix": {
+      "true_negative": 528,
+      "false_positive": 73,
+      "false_negative": 65,
+      "true_positive": 219
+    }
+  },
+  "all_models_summary": [
+    {
+      "Algorithm": "Logistic Regression",
+      "Accuracy (%)": 85.54,
+      "Dropout Recall (%)": 79.23,
+      "Dropout Precision (%)": 76.53,
+      "Dropout F1-Score (%)": 77.85,
+      "ROC-AUC": 0.9068,
+      "True Positives (TP)": 225,
+      "False Negatives (FN)": 59,
+      "False Positives (FP)": 69,
+      "True Negatives (TN)": 532
+    },
+    {
+      "Algorithm": "Decision Tree",
+      "Accuracy (%)": 80.56,
+      "Dropout Recall (%)": 80.28,
+      "Dropout Precision (%)": 66.28,
+      "Dropout F1-Score (%)": 72.61,
+      "ROC-AUC": 0.8562,
+      "True Positives (TP)": 228,
+      "False Negatives (FN)": 56,
+      "False Positives (FP)": 116,
+      "True Negatives (TN)": 485
+    },
+    {
+      "Algorithm": "Random Forest",
+      "Accuracy (%)": 84.41,
+      "Dropout Recall (%)": 77.11,
+      "Dropout Precision (%)": 75.0,
+      "Dropout F1-Score (%)": 76.04,
+      "ROC-AUC": 0.9066,
+      "True Positives (TP)": 219,
+      "False Negatives (FN)": 65,
+      "False Positives (FP)": 73,
+      "True Negatives (TN)": 528
+    }
+  ],
+  "top_features": [
+    {
+      "Feature": "Curricular units 1st sem (approved)",
+      "Importance": 0.21124515703458344
+    },
+    {
+      "Feature": "Curricular units 1st sem (grade)",
+      "Importance": 0.14807524976410036
+    },
+    {
+      "Feature": "Tuition fees up to date",
+      "Importance": 0.09161907463861252
+    },
+    {
+      "Feature": "Age at enrollment",
+      "Importance": 0.06254309452699218
+    },
+    {
+      "Feature": "Curricular units 1st sem (evaluations)",
+      "Importance": 0.04599410229230481
+    },
+    {
+      "Feature": "Admission grade",
+      "Importance": 0.039508153098323874
+    },
+    {
+      "Feature": "Course",
+      "Importance": 0.03724514872019318
+    },
+    {
+      "Feature": "Previous qualification (grade)",
+      "Importance": 0.03407806703452654
+    },
+    {
+      "Feature": "Scholarship holder",
+      "Importance": 0.031329766379347444
+    },
+    {
+      "Feature": "Debtor",
+      "Importance": 0.03100373729657148
+    }
+  ],
+  "stage_6_validation": {
+    "validation_status": "PASSED",
+    "timestamp": "2026-10-28",
+    "environment": {
+      "python_version": "3.14.2",
+      "scikit_learn_version": "1.9.0",
+      "pandas_version": "3.0.0",
+      "joblib_version": "1.5.3"
+    },
+    "test_dataset_size": 885,
+    "validation_metrics": {
+      "accuracy": 0.8441,
+      "recall": 0.7711,
+      "precision": 0.75,
+      "f1_score": 0.7604,
+      "roc_auc": 0.9066,
+      "confusion_matrix": {
+        "true_negative": 528,
+        "false_positive": 73,
+        "false_negative": 65,
+        "true_positive": 219
+      }
+    },
+    "sample_test_runs": [
+      {
+        "profile_name": "Sample 1: Academic Excellence & Financial Security",
+        "approved_units": 7.0,
+        "sem1_grade": 14.4,
+        "tuition_up_to_date": 1.0,
+        "debtor": 0.0,
+        "scholarship": 1.0,
+        "age": 19.0,
+        "predicted_class": 0,
+        "dropout_probability": 0.0238,
+        "risk_percentage": 2.38,
+        "risk_category": "Low",
+        "recommendations": [
+          "Priority 3: Student is on a positive retention trajectory.",
+          "Action: Routine end-of-term academic progress check."
+        ]
+      },
+      {
+        "profile_name": "Sample 2: Average Grades with Financial Debt",
+        "approved_units": 5.0,
+        "sem1_grade": 10.875,
+        "tuition_up_to_date": 1.0,
+        "debtor": 1.0,
+        "scholarship": 0.0,
+        "age": 19.0,
+        "predicted_class": 0,
+        "dropout_probability": 0.4507,
+        "risk_percentage": 45.07,
+        "risk_category": "Medium",
+        "recommendations": [
+          "Priority 2: Schedule advisory check-in within next two weeks.",
+          "Financial Action: Monitor upcoming tuition payment deadlines."
+        ]
+      },
+      {
+        "profile_name": "Sample 3: Zero Units Passed & Older Non-Traditional Student",
+        "approved_units": 0.0,
+        "sem1_grade": 0.0,
+        "tuition_up_to_date": 1.0,
+        "debtor": 0.0,
+        "scholarship": 0.0,
+        "age": 28.0,
+        "predicted_class": 1,
+        "dropout_probability": 0.9976,
+        "risk_percentage": 99.76,
+        "risk_category": "High",
+        "recommendations": [
+          "Priority 1: Immediate academic counselor intervention required.",
+          "Academic Action: Enroll student in mandatory subject tutoring and remedial study groups."
+        ]
+      }
+    ],
+    "demonstration_thresholds": {
+      "low_upper": 0.3,
+      "medium_upper": 0.6
+    }
+  }
+}

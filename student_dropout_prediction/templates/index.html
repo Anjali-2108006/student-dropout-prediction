@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Dropout Early Warning System</title>
+    <!-- Modern Web Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- ================================================================= -->
+    <!-- NAVIGATION BAR -->
+    <!-- ================================================================= -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-text">StudentRisk<strong>AI</strong></span>
+            </a>
+            <nav class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#prediction-section" class="nav-link">Student Prediction</a>
+                <a href="#metrics-section" class="nav-link">Model Benchmark</a>
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+                <a href="#about-section" class="nav-link">About</a>
+            </nav>
+            <div class="nav-cta">
+                <a href="#prediction-section" class="btn btn-primary btn-sm">Check Student Risk</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- HERO SECTION -->
+    <!-- ================================================================= -->
+    <section id="home" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-badge">Stage 7 · Web Application Dashboard</div>
+            <h1 class="hero-title">AI-Based Student Dropout Prediction & Early Warning System</h1>
+            <p class="hero-description">
+                Empowering educational institutions and counselors to identify at-risk students by the end of their
+                first semester. By analyzing academic momentum, socio-economic indicators, and admission profiles,
+                this system alerts educators early enough to take meaningful retention actions.
+            </p>
+            <div class="hero-actions">
+                <a href="#prediction-section" class="btn btn-primary btn-lg">Check Student Risk</a>
+                <a href="#about-section" class="btn btn-outline btn-lg">Learn How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- HIGHLIGHT STATS SECTION -->
+    <!-- ================================================================= -->
+    <section id="metrics-section" class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">30</div>
+                    <div class="stat-label">Early-Warning Features</div>
+                    <div class="stat-sub">Strictly 1st-semester & admission data</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">77.1%</div>
+                    <div class="stat-label">Dropout Detection Recall</div>
+                    <div class="stat-sub">Catches nearly 4 out of 5 at-risk students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">75.0%</div>
+                    <div class="stat-label">Alert Precision</div>
+                    <div class="stat-sub">Keeps false alarms low for counselors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0.9066</div>
+                    <div class="stat-label">ROC-AUC Score</div>
+                    <div class="stat-sub">High discriminative confidence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- PREDICTION FORM SECTION -->
+    <!-- ================================================================= -->
+    <section id="prediction-section" class="prediction-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Student Risk Evaluation Form</h2>
+                <p class="section-subtitle">
+                    Enter the student's admission, demographic, financial, and 1st-semester academic records.
+                    Zero second-semester data is used, guaranteeing authentic early warning timing.
+                </p>
+            </div>
+
+            <!-- Quick Profile Pre-Fill Bar -->
+            <div class="sample-bar">
+                <span class="sample-title">⚡ Quick-Test Pre-Fill:</span>
+                <button type="button" class="btn btn-sample btn-sample-low" id="btn-load-low">🟢 Low-Risk Profile</button>
+                <button type="button" class="btn btn-sample btn-sample-med" id="btn-load-med">🟡 Medium-Risk Profile</button>
+                <button type="button" class="btn btn-sample btn-sample-high" id="btn-load-high">🔴 High-Risk Profile</button>
+                <button type="button" class="btn btn-sample btn-sample-reset" id="btn-reset-form">🔄 Clear All</button>
+            </div>
+
+            <!-- Main Student Form -->
+            <form id="student-form" class="student-form" novalidate>
+
+                <!-- GROUP 1: ADMISSION DETAILS -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <span class="card-badge">Group 1</span>
+                        <h3 class="card-title">Student Admission Details</h3>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="Application_mode">Application Mode <span class="required">*</span></label>
+                            <select id="Application_mode" name="Application mode" class="form-control" required>
+                                <option value="1">1st Phase - General Contingent</option>
+                                <option value="17" selected>2nd Phase - General Contingent</option>
+                                <option value="15">International Student (Bachelor)</option>
+                                <option value="39">Over 23 Years Old</option>
+                                <option value="18">3rd Phase - General Contingent</option>
+                                <option value="2">Ordinance No. 612/93</option>
+                                <option value="5">1st Phase - Special (Azores)</option>
+                            </select>
+                            <small class="form-hint">Pathway through which student applied</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Application_order">Degree Choice Priority <span class="required">*</span></label>
+                            <select id="Application_order" name="Application order" class="form-control" required>
+                                <option value="1" selected>1st Choice (Top Preference)</option>
+                                <option value="2">2nd Choice</option>
+                                <option value="3">3rd Choice</option>
+                                <option value="4">4th Choice</option>
+                                <option value="5">5th Choice</option>
+                                <option value="6">6th Choice</option>
+                            </select>
+                            <small class="form-hint">Student preference order (1 to 9)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Course">Degree Course Program <span class="required">*</span></label>
+                            <select id="Course" name="Course" class="form-control" required>
+                                <option value="9254" selected>Informatics Engineering (9254)</option>
+                                <option value="9070">Communication Design (9070)</option>
+                                <option value="9500">Nursing (9500)</option>
+                                <option value="9773">Management (9773)</option>
+                                <option value="8014">Agronomy (8014)</option>
+                                <option value="171">Biofuel Production (171)</option>
+                                <option value="9147">Management (Evening) (9147)</option>
+                                <option value="9853">Social Service (9853)</option>
+                            </select>
+                            <small class="form-hint">Enrolled academic program code</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Daytime_evening_attendance">Attendance Schedule <span class="required">*</span></label>
+                            <select id="Daytime_evening_attendance" name="Daytime/evening attendance" class="form-control" required>
+                                <option value="1" selected>Daytime Classes</option>
+                                <option value="0">Evening Classes</option>
+                            </select>
+                            <small class="form-hint">Class timetable modality</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Previous_qualification">Previous Qualification <span class="required">*</span></label>
+                            <select id="Previous_qualification" name="Previous qualification" class="form-control" required>
+                                <option value="1" selected>Secondary Education (High School)</option>
+                                <option value="19">Higher Education - Bachelor Degree</option>
+                                <option value="39">Technological Specialization Course</option>
+                                <option value="42">Professional Higher Technical Course</option>
+                            </select>
+                            <small class="form-hint">Highest previous education level</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Previous_qualification_grade">Previous Qualification Grade <span class="required">*</span></label>
+                            <input type="number" id="Previous_qualification_grade" name="Previous qualification (grade)" class="form-control" min="0" max="200" step="0.1" value="135.0" required>
+                            <small class="form-hint">Grade in previous schooling (0 to 200)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Admission_grade">University Entrance Grade <span class="required">*</span></label>
+                            <input type="number" id="Admission_grade" name="Admission grade" class="form-control" min="0" max="200" step="0.1" value="130.5" required>
+                            <small class="form-hint">Admission exam mark (0 to 200)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GROUP 2: DEMOGRAPHIC DETAILS -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <span class="card-badge">Group 2</span>
+                        <h3 class="card-title">Student Demographic Details</h3>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="Marital_status">Marital Status <span class="required">*</span></label>
+                            <select id="Marital_status" name="Marital status" class="form-control" required>
+                                <option value="1" selected>Single</option>
+                                <option value="2">Married</option>
+                                <option value="3">Widower</option>
+                                <option value="4">Divorced</option>
+                                <option value="5">Facto Union</option>
+                                <option value="6">Legally Separated</option>
+                            </select>
+                            <small class="form-hint">Legal civil marital status</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Gender">Gender <span class="required">*</span></label>
+                            <select id="Gender" name="Gender" class="form-control" required>
+                                <option value="0">Female</option>
+                                <option value="1" selected>Male</option>
+                            </select>
+                            <small class="form-hint">Student biological gender</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Age_at_enrollment">Age at Enrollment <span class="required">*</span></label>
+                            <input type="number" id="Age_at_enrollment" name="Age at enrollment" class="form-control" min="17" max="75" value="20" required>
+                            <small class="form-hint">Student age at start of course (years)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Nacionality">Nationality Code <span class="required">*</span></label>
+                            <input type="number" id="Nacionality" name="Nacionality" class="form-control" value="1" min="1" max="100" required>
+                            <small class="form-hint">Country code (1 = National / Portuguese)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="International">International Student? <span class="required">*</span></label>
+                            <select id="International" name="International" class="form-control" required>
+                                <option value="0" selected>No (Domestic Student)</option>
+                                <option value="1">Yes (International Scholar)</option>
+                            </select>
+                            <small class="form-hint">International visa / foreign citizen</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Displaced">Displaced Student? <span class="required">*</span></label>
+                            <select id="Displaced" name="Displaced" class="form-control" required>
+                                <option value="1" selected>Yes (Relocated from home)</option>
+                                <option value="0">No (Commuting from hometown)</option>
+                            </select>
+                            <small class="form-hint">Living away from family home</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Educational_special_needs">Special Educational Needs <span class="required">*</span></label>
+                            <select id="Educational_special_needs" name="Educational special needs" class="form-control" required>
+                                <option value="0" selected>No</option>
+                                <option value="1">Yes (Requires accessibility support)</option>
+                            </select>
+                            <small class="form-hint">Officially recognized learning accommodations</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GROUP 3: SOCIOECONOMIC & FINANCIAL DETAILS -->
+                <div class="form-card">
+                    <div class="card-header">
+                        <span class="card-badge">Group 3</span>
+                        <h3 class="card-title">Socioeconomic & Financial Details</h3>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group highlight-input">
+                            <label for="Tuition_fees_up_to_date">Tuition Fees Status <span class="required">*</span></label>
+                            <select id="Tuition_fees_up_to_date" name="Tuition fees up to date" class="form-control" required>
+                                <option value="1" selected>Fees Paid & Up to Date</option>
+                                <option value="0">Tuition Overdue (Delinquent)</option>
+                            </select>
+                            <small class="form-hint">Top predictive socio-economic feature</small>
+                        </div>
+
+                        <div class="form-group highlight-input">
+                            <label for="Debtor">University Debt Status <span class="required">*</span></label>
+                            <select id="Debtor" name="Debtor" class="form-control" required>
+                                <option value="0" selected>No Outstanding Debt</option>
+                                <option value="1">Student Has Unpaid Debt</option>
+                            </select>
+                            <small class="form-hint">Outstanding financial liabilities</small>
+                        </div>
+
+                        <div class="form-group highlight-input">
+                            <label for="Scholarship_holder">Scholarship Status <span class="required">*</span></label>
+                            <select id="Scholarship_holder" name="Scholarship holder" class="form-control" required>
+                                <option value="0" selected>No Scholarship</option>
+                                <option value="1">Financial Scholarship Holder</option>
+                            </select>
+                            <small class="form-hint">Receipt of financial stipend</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Mothers_qualification">Mother's Education Code <span class="required">*</span></label>
+                            <input type="number" id="Mothers_qualification" name="Mother's qualification" class="form-control" value="19" min="1" max="50" required>
+                            <small class="form-hint">Parental education qualification code</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Fathers_qualification">Father's Education Code <span class="required">*</span></label>
+                            <input type="number" id="Fathers_qualification" name="Father's qualification" class="form-control" value="19" min="1" max="50" required>
+                            <small class="form-hint">Parental education qualification code</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Mothers_occupation">Mother's Occupation Code <span class="required">*</span></label>
+                            <input type="number" id="Mothers_occupation" name="Mother's occupation" class="form-control" value="5" min="1" max="50" required>
+                            <small class="form-hint">ISCO standard occupation category code</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Fathers_occupation">Father's Occupation Code <span class="required">*</span></label>
+                            <input type="number" id="Fathers_occupation" name="Father's occupation" class="form-control" value="5" min="1" max="50" required>
+                            <small class="form-hint">ISCO standard occupation category code</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Unemployment_rate">Regional Unemployment Rate (%) <span class="required">*</span></label>
+                            <input type="number" id="Unemployment_rate" name="Unemployment rate" class="form-control" step="0.1" value="10.8" required>
+                            <small class="form-hint">Macroeconomic indicator during academic term</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Inflation_rate">National Inflation Rate (%) <span class="required">*</span></label>
+                            <input type="number" id="Inflation_rate" name="Inflation rate" class="form-control" step="0.1" value="1.4" required>
+                            <small class="form-hint">Macroeconomic indicator during academic term</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="GDP">Annual GDP Growth Rate (%) <span class="required">*</span></label>
+                            <input type="number" id="GDP" name="GDP" class="form-control" step="0.01" value="1.74" required>
+                            <small class="form-hint">Macroeconomic indicator during academic term</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GROUP 4: FIRST-SEMESTER ACADEMIC DETAILS -->
+                <div class="form-card highlight-card">
+                    <div class="card-header">
+                        <span class="card-badge badge-accent">Group 4</span>
+                        <h3 class="card-title">First-Semester Academic Performance (Key Predictors)</h3>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group highlight-input">
+                            <label for="CU_1st_sem_approved">1st Sem Subjects Passed (Approved) <span class="required">*</span></label>
+                            <input type="number" id="CU_1st_sem_approved" name="Curricular units 1st sem (approved)" class="form-control" min="0" max="25" value="6" required>
+                            <small class="form-hint">#1 Strongest predictor in the entire ML model</small>
+                        </div>
+
+                        <div class="form-group highlight-input">
+                            <label for="CU_1st_sem_grade">1st Sem Average Grade (0 - 20) <span class="required">*</span></label>
+                            <input type="number" id="CU_1st_sem_grade" name="Curricular units 1st sem (grade)" class="form-control" min="0" max="20" step="0.1" value="13.5" required>
+                            <small class="form-hint">#2 Strongest predictor (Marks below 9.5 indicate failure)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CU_1st_sem_enrolled">1st Sem Subjects Enrolled <span class="required">*</span></label>
+                            <input type="number" id="CU_1st_sem_enrolled" name="Curricular units 1st sem (enrolled)" class="form-control" min="0" max="25" value="6" required>
+                            <small class="form-hint">Total registered courses in semester 1</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CU_1st_sem_evaluations">1st Sem Exams / Evaluations Taken <span class="required">*</span></label>
+                            <input type="number" id="CU_1st_sem_evaluations" name="Curricular units 1st sem (evaluations)" class="form-control" min="0" max="45" value="7" required>
+                            <small class="form-hint">Total assessments attempted (exam engagement)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CU_1st_sem_credited">1st Sem Credited Units <span class="required">*</span></label>
+                            <input type="number" id="CU_1st_sem_credited" name="Curricular units 1st sem (credited)" class="form-control" min="0" max="25" value="0" required>
+                            <small class="form-hint">Credits transferred from prior programs</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="CU_1st_sem_without_evaluations">1st Sem Skipped Without Evaluation <span class="required">*</span></label>
+                            <input type="number" id="CU_1st_sem_without_evaluations" name="Curricular units 1st sem (without evaluations)" class="form-control" min="0" max="25" value="0" required>
+                            <small class="form-hint">Subjects where student did not attend evaluations</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUBMIT BUTTONS -->
+                <div class="form-actions">
+                    <button type="submit" id="btn-submit" class="btn btn-primary btn-lg">
+                        <span class="btn-text">Predict Student Dropout Risk</span>
+                        <span class="spinner" id="btn-spinner" aria-hidden="true"></span>
+                    </button>
+                    <button type="reset" class="btn btn-outline btn-lg">Reset Form</button>
+                </div>
+            </form>
+
+            <!-- ============================================================= -->
+            <!-- LIVE PREDICTION RESULT CARD (STAGE 8) -->
+            <!-- ============================================================= -->
+            <div id="response-card" class="response-card hidden">
+                <div class="response-header">
+                    <span id="response-icon" class="response-icon">🎓</span>
+                    <div>
+                        <h3 id="response-title" class="response-title">Student Dropout Risk Result</h3>
+                        <span id="response-subtitle" class="response-sub">Live Machine Learning Inference (Random Forest Pipeline)</span>
+                    </div>
+                </div>
+
+                <!-- Primary Result Banner -->
+                <div class="result-banner" id="result-banner">
+                    <div class="result-metric">
+                        <span class="metric-label">Risk Category</span>
+                        <span id="result-tier-badge" class="badge-tier">Calculating...</span>
+                    </div>
+
+                    <div class="result-metric">
+                        <span class="metric-label">Predicted Dropout Risk</span>
+                        <span id="result-probability" class="metric-value">--%</span>
+                    </div>
+
+                    <div class="result-metric">
+                        <span class="metric-label">Predicted Target Class</span>
+                        <span id="result-class-badge" class="class-label">--</span>
+                    </div>
+                </div>
+
+                <!-- Probability Progress Gauge -->
+                <div class="gauge-wrapper">
+                    <div class="gauge-track">
+                        <div id="gauge-bar" class="gauge-fill" style="width: 0%;"></div>
+                    </div>
+                    <div class="gauge-labels">
+                        <span>Low Risk (0 - 29%)</span>
+                        <span>Medium Risk (30 - 59%)</span>
+                        <span>High Risk (60 - 100%)</span>
+                    </div>
+                </div>
+
+                <!-- Explanation Box -->
+                <div class="explanation-box">
+                    <h4>Explanation:</h4>
+                    <p id="result-explanation" class="explanation-text"></p>
+                </div>
+
+                <!-- Supportive Suggestions (Task 5) -->
+                <div class="suggestions-card" id="suggestions-card">
+                    <h4>Recommended Student Support Actions:</h4>
+                    <ul id="suggestions-list" class="suggestions-list"></ul>
+                </div>
+
+                <!-- Privacy & Ethical Note (Task 7) -->
+                <div class="ethical-note-box">
+                    <strong>Notice:</strong>
+                    <p id="result-ethical-note">
+                        This tool provides an estimated dropout risk based on a machine learning model.
+                        It is intended to support student assistance and academic monitoring, not to make
+                        final decisions about students. Predictions may be inaccurate and should be reviewed by authorized staff.
+                    </p>
+                </div>
+
+                <!-- Input Snapshot Table -->
+                <div id="response-details" class="response-details">
+                    <h4>Validated Input Snapshot:</h4>
+                    <div id="response-table" class="response-grid"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- ABOUT SECTION -->
+    <!-- ================================================================= -->
+    <section id="about-section" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About the Early Warning Project</h2>
+                <p class="section-subtitle">Understanding student dropout dynamics through Machine Learning</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">🎯</div>
+                    <h3>What Does Dropout Prediction Mean?</h3>
+                    <p>
+                        Student dropout prediction uses historical educational patterns to assess the probability
+                        that an enrolled student might discontinue their studies before completing their degree.
+                        It translates multi-dimensional academic records into an interpretable risk signal.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">⏱️</div>
+                    <h3>Why Is Early Warning Crucial?</h3>
+                    <p>
+                        Most academic dropouts happen during the first academic year. Traditional university reviews
+                        often occur at the end of the year when failure is already solidified. By identifying risk
+                        at the conclusion of <strong>Semester 1</strong>, advisors have months to intervene with tutoring,
+                        counseling, and financial aid.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">🤝</div>
+                    <h3>How It Supports Educators</h3>
+                    <p>
+                        The system acts as a decision-support copilot for academic counselors. It does not automate
+                        academic penalties; rather, it highlights students who need support and provides context-aware
+                        guidance (remedial tutoring, fee installment plans, and workload adjustments).
+                    </p>
+                </div>
+            </div>
+
+            <div class="disclaimer-box">
+                <h4>🛡️ Ethical AI & Limitations Notice</h4>
+                <p>
+                    All outputs represent <strong>probabilistic statistical associations</strong>, not deterministic facts.
+                    Predictions are designed exclusively for constructive student support and retention assistance,
+                    never for punitive or exclusionary actions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- FOOTER -->
+    <!-- ================================================================= -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>© 2026 AI-Based Student Dropout Prediction and Early Warning System. Educational ML Prototype.</p>
+            <div class="footer-tags">
+                <span class="tag">Flask</span>
+                <span class="tag">Scikit-Learn</span>
+                <span class="tag">Random Forest</span>
+                <span class="tag">Stage 7 Completed</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Client Script -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

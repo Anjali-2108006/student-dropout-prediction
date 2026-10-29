@@ -1,0 +1,28 @@
+# Python Environment
+venv/
+env/
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Trained Models & Binary Artifacts
+models/*.pkl
+models/*.joblib
+!models/README.md
+!models/.gitkeep
+
+# Large Data files (Keep schemas and documentation)
+dataset/*.csv
+!dataset/README.md
+!dataset/.gitkeep
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
